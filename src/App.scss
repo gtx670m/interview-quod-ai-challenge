@@ -1,0 +1,10 @@
+.App {
+  .content {
+    display: flex;
+    flex-direction: row;
+    .list {
+      width: 50%;
+      margin: 0 10px;
+    }
+  }
+}
