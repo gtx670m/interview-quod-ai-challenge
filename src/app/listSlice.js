@@ -15,8 +15,30 @@ export const listSlice = createSlice({
     listIssue: [],
     recentIssue: [],
     highlightIssue: {},
+    count: 0,
   },
-  reducers: {},
+  reducers: {
+    setHighlightIssue: (state, action) => {
+      const { issue = {}, isActive = false } = action.payload;
+      if (isActive) {
+        state.highlightIssue = {};
+      } else {
+        state.highlightIssue = issue;
+      }
+    },
+    addToRecentIssue: (state, action) => {
+      const { issue = {}, isActive = false } = action.payload;
+      if (!isActive) {
+        if (state.recentIssue.length > 4) {
+          state.recentIssue.pop();
+          state.recentIssue.unshift(issue);
+        } else {
+          state.recentIssue.unshift(issue);
+        }
+      }
+      state.count = state.recentIssue.length;
+    }
+  },
   extraReducers: {
     [fetch.pending]: (state) => {
       state.loading = true;
@@ -32,14 +54,6 @@ export const listSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount } = listSlice.actions;
-
-export const incrementAsync = (amount) => (dispatch) => {
-  setTimeout(() => {
-    dispatch(incrementByAmount(amount));
-  }, 1000);
-};
-
-export const selectCount = (state) => state.list.recent;
+export const { setHighlightIssue, addToRecentIssue } = listSlice.actions;
 
 export default listSlice.reducer;

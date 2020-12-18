@@ -1,4 +1,19 @@
 .Menu {
   background-color: #90caf9;
   height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    color: white;
+    margin-right: 20px;
+    font-weight: bold;
+  }
 }

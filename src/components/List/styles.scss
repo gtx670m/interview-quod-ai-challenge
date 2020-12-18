@@ -2,7 +2,20 @@
   ul {
     list-style: none;
     padding: 0;
-    li {
+    li.interact {
+      border: 1px solid gray;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px 0;
+      cursor: pointer;
+      &:hover {
+        background-color: yellow;
+      }
+      &.active {
+        background-color: yellow;
+      }
+    }
+    li.dumb {
       border: 1px solid gray;
       border-radius: 4px;
       padding: 10px;
