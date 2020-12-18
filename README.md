@@ -68,3 +68,61 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Dependencies:
+
+- @reduxjs/toolkit: The official, opinionated, batteries-included toolset for efficient Redux development.
+- eslint-config-strict-react: ESLint sharable config for strict linting on React code.
+
+## Technical decision:
+
+**How did you implement styling? What are the pros and cons? Why did you chose this approach?**
+
+Sass (which stands for 'Syntactically awesome style sheets') is an extension of CSS that enables me to use things like variables, nested rules, inline imports and more. It also helps to keep things organised and allows me to create style sheets faster. Create React App has built-in support for Sass, no need complicated integration.
+
+**How did you share state between components? What are the pros and cons? Why did you chose this approach?**
+
+I use Redux for application state management.
+
+**Pros:**
+
+- One store to manage all the state of the application
+- Easy to maintain
+- Good organization
+- Can track easily using developer tools
+- Huge community for support
+
+**Cons:**
+
+- No encapsulation. Any component can access the data which can cause security issues.
+- Difficult to get acquainted for newbies
+
+**Did you use React hooks? Why or why not?**
+
+Using React Hook will reduce the number of concepts i need to juggle when writing React applications. Hooks let me always use functions instead of having to constantly switch between functions, classes, higher-order components, and render props.
+
+**What would you improve?**
+
+- Find a better way to organize project structure
+- Stop eslint running on production instead of disable it when deploy with Heroku
+- Find a better way to manage classname instead of trying to find unique name for each component
+- Make the UI look more fancy
+
+**How did you prevent wasted renders?**
+
+- Use handle functions instead of inline function when passing a function to a component to advoid creating new function every time the parent component is rendered.
+- Use selectors rather than bloating mapStateToProps: A selector is not recomputed unless one of its arguments changes, avoiding useless render caused by strict comparisons.
+- Use shouldComponentUpdate method with normal React component.
+- Use PureComponent instead of Component because PureComponent handles the shouldComponentUpdate automatically.
+
+**How did you handle side-effects (e.g. data fetching)? What are the pros and cons? Why did you chose this approach?**
+I use redux thunks to handle side-effects
+
+**Reason**
+
+- Thunks allow us to write reusable logic that interacts with a Redux store, but without needing to reference a specific store instance.
+- Thunks enable us to move more complex logic outside of our components
+- From a component's point of view, it doesn't care whether it's dispatching a plain action or kicking off some async logic - it just calls dispatch(doSomething()) and moves on.
+- Thunks can return values like promises, allowing logic inside the component to wait for something else to finish.
+- Redux toolkit has buit-in method for Thunks, detail guideline for implementation
+- Redux Saga is a good choice but most apps do not need the power and capabilities they provide. So, thunks are the default recommended approach for writing async logic with Redux.

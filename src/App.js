@@ -27,7 +27,7 @@ const App = () => {
           <h1>List issue</h1>
           <List listIssue={listIssue} />
           <button
-            className="nextBtn"
+            className="next-btn"
             onClick={handleClickNext}
             disabled={loading}
           >
