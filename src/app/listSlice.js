@@ -29,6 +29,7 @@ export const listSlice = createSlice({
     addToRecentIssue: (state, action) => {
       const { issue = {}, isActive = false } = action.payload;
       if (!isActive) {
+        state.recentIssue = state.recentIssue.filter(item => item.id !== issue.id);
         if (state.recentIssue.length > 4) {
           state.recentIssue.pop();
           state.recentIssue.unshift(issue);
